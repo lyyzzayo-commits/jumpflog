@@ -64,11 +64,6 @@ public sealed class WallStickHandler : MonoBehaviour
             ClearWallStick();
     }
 
-    public void CancelWallStick()
-    {
-        ClearWallStick();
-    }
-
     private void StartWallStick()
     {
         IsWallSticking = true;

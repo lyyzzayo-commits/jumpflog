@@ -5,6 +5,7 @@ public class LavaManager : MonoBehaviour
     [SerializeField] private bool isActive;
     [SerializeField] private float speed = 1f;
     [SerializeField] private GameManager gameManager;
+    private float sceneStartY;
     
     public void ResetPosition(float y) //��ġ ����
     {
@@ -12,6 +13,12 @@ public class LavaManager : MonoBehaviour
         Vector3 pos = transform.position;
         pos.y = y;
         transform.position = pos;
+    }
+    public void ResetToSceneStart(float startSpeed = 0f, bool active = false)
+    {
+        ResetPosition(sceneStartY);
+        speed = startSpeed;
+        isActive = active;
     }
 
     public void ResetLava(float startY, float startSpeed = 0f, bool active = false) //���� ����

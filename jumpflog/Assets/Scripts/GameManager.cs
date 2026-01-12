@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float cameraStartOffsetY = 1.5f;
     [SerializeField] private float lavaStartOffsetFromBottom = 2.0f;
 
+    [Header("Lava Reset")]
+    [SerializeField] private bool useSceneStartOnReset = true;
+
     [Header("UI")]
     [SerializeField] GameObject TapToStartUI;
     [SerializeField] GameObject GameOverUI;
@@ -83,10 +86,18 @@ public class GameManager : MonoBehaviour
         cameraClimb.SetTarget(player);
         cameraClimb.SetActive(true);
 
+        if (lavaManager != null)
+{
+    if (useSceneStartOnReset)
+    {
+        lavaManager.ResetToSceneStart(startSpeed: 0f, active: true);
+    }
+    else
+    {
         float lavaStartY = cameraClimb.BottomY + lavaStartOffsetFromBottom;
         lavaManager.ResetLava(lavaStartY, startSpeed: 0f, active: true);
-
-        spawner.ResetSpawner();
+    }
+}spawner.ResetSpawner();
         
         ApplyStateLocks();
 
