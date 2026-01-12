@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 210667786}
   - component: {fileID: 210667785}
   m_Layer: 0
-  m_Name: Square
+  m_Name: LeftTriggerWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -591,7 +591,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.033971325, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -601,7 +601,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.0679426, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &210667787
 SpriteRenderer:
@@ -673,6 +673,53 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.38, y: 0.04, z: 0}
   m_LocalScale: {x: -1.1670737, y: 10.082468, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &230235867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 230235869}
+  - component: {fileID: 230235868}
+  m_Layer: 0
+  m_Name: PlayerResetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &230235868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230235867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa77085dfca7044ab478ec41d62fd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerResetter
+  spawnPoint: {fileID: 1718541166}
+  rb: {fileID: 886528254}
+  frogState: {fileID: 2020513750}
+--- !u!4 &230235869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230235867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.74362, y: 1.75593, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1161,6 +1208,7 @@ MonoBehaviour:
   ballRb: {fileID: 0}
   ballCol: {fileID: 0}
   wallstickhandler: {fileID: 0}
+  frogState: {fileID: 0}
 --- !u!212 &886528256
 SpriteRenderer:
   serializedVersion: 2
@@ -1264,7 +1312,7 @@ GameObject:
   - component: {fileID: 1011673353}
   - component: {fileID: 1011673352}
   m_Layer: 0
-  m_Name: Square (4)
+  m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1482,7 +1530,7 @@ GameObject:
   - component: {fileID: 1311696371}
   - component: {fileID: 1311696370}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: RightTriggerWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1535,7 +1583,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0509571, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1545,7 +1593,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1019142, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1311696372
 SpriteRenderer:
@@ -1736,7 +1784,7 @@ GameObject:
   - component: {fileID: 1497655428}
   - component: {fileID: 1497655427}
   m_Layer: 0
-  m_Name: Square (3)
+  m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2027,7 +2075,6 @@ GameObject:
   - component: {fileID: 1595713695}
   - component: {fileID: 1595713694}
   - component: {fileID: 1595713696}
-  - component: {fileID: 1595713692}
   m_Layer: 0
   m_Name: Square (2)
   m_TagString: Untagged
@@ -2035,19 +2082,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1595713692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595713691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5294e2d709b47a345a6c2be1b033afa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WallTrigger
-  wallSide: 0
 --- !u!212 &1595713694
 SpriteRenderer:
   serializedVersion: 2
@@ -2168,6 +2202,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1718541165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1718541166}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1718541166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718541165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06, y: 1.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020513749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2303,3 +2368,5 @@ SceneRoots:
   - {fileID: 1469301453}
   - {fileID: 1173349216}
   - {fileID: 1514955252}
+  - {fileID: 230235869}
+  - {fileID: 1718541166}
