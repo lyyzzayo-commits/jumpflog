@@ -87,12 +87,12 @@ public class GameManager : MonoBehaviour
         timeSurvived = 0f;
 
         playerResetter.SetPhysicsActive(true);
-
+        playerResetter.ResetPlayer();
         float cameraStartY = player.position.y;
         cameraClimb.ResetY(cameraStartY);
         cameraClimb.SetTarget(player);
         cameraClimb.SetActive(true);
-        playerResetter.ResetPlayer();
+        
 
         if (lavaManager != null)
         {
