@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
         TapToStartUI.SetActive(false );
 
         ApplyStateLocks();
+        playerResetter.ResetPlayer();
     }
 
     [SerializeField] private FailTrigger failTrigger;
@@ -127,8 +128,10 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("구독 시작");
         if (failTrigger != null)
             failTrigger.OnGameOver += HandleGameOver;
+            Debug.Log("찐 구독");
     }
 
     private void OnDisable()
