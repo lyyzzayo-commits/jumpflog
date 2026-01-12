@@ -85,30 +85,32 @@ public class GameManager : MonoBehaviour
         cameraClimb.ResetY(cameraStartY);
         cameraClimb.SetTarget(player);
         cameraClimb.SetActive(true);
+        playerResetter.ResetPlayer();
 
         if (lavaManager != null)
-{
-    if (useSceneStartOnReset)
-    {
-        lavaManager.ResetToSceneStart(startSpeed: 0f, active: true);
-    }
-    else
-    {
-        float lavaStartY = cameraClimb.BottomY + lavaStartOffsetFromBottom;
-        lavaManager.ResetLava(lavaStartY, startSpeed: 0f, active: true);
-    }
-}spawner.ResetSpawner();
-        
+        {
+            if (useSceneStartOnReset)
+            {
+                lavaManager.ResetToSceneStart(startSpeed: 0f, active: true);
+            }
+            else
+            {
+                float lavaStartY = cameraClimb.BottomY + lavaStartOffsetFromBottom;
+                lavaManager.ResetLava(lavaStartY, startSpeed: 0f, active: true);
+            }
+        }
+        spawner.ResetSpawner();
+            
         ApplyStateLocks();
 
     }
+
     public void ReadyGame()
     {
         state = GameState.Ready;
         
         if(failTrigger != null) failTrigger.ResetTrigger();
 
-        playerResetter.ResetPlayer();
         playerResetter.SetPhysicsActive(false);
 
         TapToStartUI.SetActive(true);
@@ -136,7 +138,9 @@ public class GameManager : MonoBehaviour
         TapToStartUI.SetActive(false);
 
         ApplyStateLocks();
-        playerResetter.ResetPlayer();
+        playerResetter.SetPhysicsActive(false);
+
+        ReadyGame();
     }
 
     [SerializeField] private FailTrigger failTrigger;

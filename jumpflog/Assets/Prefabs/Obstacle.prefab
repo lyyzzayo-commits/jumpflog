@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4945785781968791894}
   - component: {fileID: 959594352299532751}
   - component: {fileID: -4636847811695362175}
+  - component: {fileID: 9100104763200950355}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -181,3 +182,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DespawnBelowLava
   lava: {fileID: 0}
   marginBelow: 1
+--- !u!114 &9100104763200950355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3534315795033626166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92084d1e01fffcf4ea3c63c0834e4138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FailTrigger
