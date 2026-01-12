@@ -17,6 +17,7 @@ public class DragController : MonoBehaviour
     [SerializeField] private Rigidbody2D ballRb;
     [SerializeField] private Collider2D ballCol;
     [SerializeField] private WallStickHandler wallstickhandler;
+    [SerializeField] private FrogState frogState;
     
 
     private Camera cam;
@@ -148,6 +149,18 @@ public class DragController : MonoBehaviour
 
             // 던지는 방향: 당긴 반대 방향
             rb.AddForce(-(Vector2)dragVector * forceToAdd, ForceMode2D.Impulse);
+
+            Vector2 launchVector = -(Vector2)dragVector;
+
+            // 방향 결정 (이 순간에만!)
+            Facing facing = (launchVector.x < 0f)
+                ? Facing.Left
+                : Facing.Right;
+
+            // 상태 전달
+            frogState.SetJumping(true, facing);
+
+
             //Frog체인지 호출함
 
             if (launchClip != null)
