@@ -52,7 +52,7 @@ public class CameraClimb : MonoBehaviour
         target = newTarget;
     }
 
-    public void ResetY(float y)
+    public void ResetY(float y) //
     {
         Vector3 pos = transform.position;
         pos.y = y;
@@ -68,7 +68,7 @@ public class CameraClimb : MonoBehaviour
         isActive = active;
     }
     
-    public void Tick(float dt)
+    public void Tick(float dt) //카메라 위치 조정
     {
         if (!isActive) return;
         if (target == null) return;
