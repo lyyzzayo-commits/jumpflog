@@ -1639,6 +1639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92084d1e01fffcf4ea3c63c0834e4138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FailTrigger
+  frogState: {fileID: 0}
 --- !u!114 &1286296183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2260,7 +2261,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020513749}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ca2e8cceb6eb3c4f926621b967faf0c, type: 3}
   m_Name: 

@@ -3,11 +3,10 @@ using UnityEngine;
 
 public sealed class FailTrigger : MonoBehaviour
 {
-    //[SerializeField] private FrogState frogState;
+    [SerializeField] private FrogState frogState;
 
     // 게임오버 이벤트
     public event Action OnGameOver;
-
     private bool triggered;
 
     public void ResetTrigger()
@@ -23,9 +22,8 @@ public sealed class FailTrigger : MonoBehaviour
         if (!other.CompareTag("Frog")) return;
 
         triggered = true;
-
-        //if (frogState != null)
-            //frogState.SetDead(true);
+        if (frogState != null)
+            frogState.SetDead(true);
 
         // 게임오버 이벤트 발행
         Debug.Log("if문 다 통과");
