@@ -10,9 +10,16 @@ public sealed class FailTrigger : MonoBehaviour
 
     private bool triggered;
 
+    public void ResetTrigger()
+    {
+        triggered = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("첫 if문 통과 전");
         if (triggered) return;
+        Debug.Log("두 번째 if문 통과 전");
         if (!other.CompareTag("Frog")) return;
 
         triggered = true;
@@ -21,6 +28,9 @@ public sealed class FailTrigger : MonoBehaviour
             //frogState.SetDead(true);
 
         // 게임오버 이벤트 발행
+        Debug.Log("if문 다 통과");
         OnGameOver?.Invoke();
+
+        triggered = false;
     }
 }

@@ -672,12 +672,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210667784}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.38, y: 0.04, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.10277, y: -1.80889, z: 0}
   m_LocalScale: {x: -1.1670737, y: 10.082468, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2020513751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &230235867
 GameObject:
@@ -985,8 +985,9 @@ GameObject:
   - component: {fileID: 886528252}
   - component: {fileID: 886528251}
   - component: {fileID: 886528258}
+  - component: {fileID: 886528259}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Frog
   m_TagString: Frog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1210,7 +1211,7 @@ MonoBehaviour:
   ballRb: {fileID: 0}
   ballCol: {fileID: 0}
   wallstickhandler: {fileID: 0}
-  frogState: {fileID: 0}
+  frogState: {fileID: 2020513750}
 --- !u!212 &886528256
 SpriteRenderer:
   serializedVersion: 2
@@ -1260,7 +1261,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 6533561894047761206, guid: c9ad5e795a437c14cb67a9eb3066fb5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1279,8 +1280,8 @@ Transform:
   m_GameObject: {fileID: 886528250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 1.82, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.43, y: -0.23, z: 0}
+  m_LocalScale: {x: 0.22807, y: 0.22807, z: 0.22807}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1302,6 +1303,21 @@ MonoBehaviour:
   maxFallSpeed: -3
   maxStickDuration: 1.2
   clampFallSpeed: 1
+--- !u!114 &886528259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886528250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24411e6936b6990499625bf7c740895d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisableRigidbodyRotation
+  applyOnAwake: 1
+  resetRotationToZero: 0
+  enforceEveryFrame: 0
 --- !u!1 &1011673351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,7 +1549,7 @@ GameObject:
   - component: {fileID: 1286296183}
   - component: {fileID: 1286296182}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1717,7 +1733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5294e2d709b47a345a6c2be1b033afa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallTrigger
-  wallSide: 0
+  wallSide: 1
 --- !u!61 &1311696371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1831,12 +1847,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311696369}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 0.05, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.77723, y: -1.79889, z: 0}
   m_LocalScale: {x: -1.1670737, y: 10.082468, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2020513751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1469301449
 GameObject:
@@ -2091,7 +2107,7 @@ GameObject:
   - component: {fileID: 1595713694}
   - component: {fileID: 1595713696}
   m_Layer: 0
-  m_Name: Square (2)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2277,16 +2293,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca2e8cceb6eb3c4f926621b967faf0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrogState
-  sr: {fileID: 0}
-  idleLeft: {fileID: 0}
-  idleRight: {fileID: 0}
-  jumpLeft: {fileID: 0}
-  jumpRight: {fileID: 0}
-  wallLeft: {fileID: 0}
-  wallRight: {fileID: 0}
-  deadLeft: {fileID: 0}
-  deadRight: {fileID: 0}
-  facing: 1
+  sr: {fileID: 886528256}
+  idleLeft: {fileID: 6533561894047761206, guid: c9ad5e795a437c14cb67a9eb3066fb5a, type: 3}
+  idleRight: {fileID: -1516278275257373323, guid: d8b14a6b6c2ec29408ea6ab2281a0b6a, type: 3}
+  jumpLeft: {fileID: 4267573896173738595, guid: 1909402d8d0025340b73ccabba596645, type: 3}
+  jumpRight: {fileID: -8823122766945151084, guid: 20ef3c31359c04a4cadce0922ca8e8ad, type: 3}
+  wallLeft: {fileID: 6533561894047761206, guid: c9ad5e795a437c14cb67a9eb3066fb5a, type: 3}
+  wallRight: {fileID: -1516278275257373323, guid: d8b14a6b6c2ec29408ea6ab2281a0b6a, type: 3}
+  deadLeft: {fileID: -4415936822683194467, guid: 12b9bd31c83e2af4e9e1e433b734b5d3, type: 3}
+  deadRight: {fileID: -4415936822683194467, guid: 12b9bd31c83e2af4e9e1e433b734b5d3, type: 3}
+  facing: 0
 --- !u!4 &2020513751
 Transform:
   m_ObjectHideFlags: 0
@@ -2299,7 +2315,9 @@ Transform:
   m_LocalPosition: {x: 0.72277, y: 1.84889, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 210667788}
+  - {fileID: 1311696373}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2041026305
@@ -2371,10 +2389,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 20293254}
   - {fileID: 886528257}
-  - {fileID: 210667788}
   - {fileID: 1497655429}
   - {fileID: 1595713695}
-  - {fileID: 1311696373}
   - {fileID: 1011673354}
   - {fileID: 2020513751}
   - {fileID: 166892687}

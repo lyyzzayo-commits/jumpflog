@@ -86,10 +86,13 @@ public class GameManager : MonoBehaviour
         spawner.ResetSpawner();
         
         ApplyStateLocks();
+
     }
     public void ReadyGame()
     {
         state = GameState.Ready;
+        
+        if(failTrigger != null) failTrigger.ResetTrigger();
 
         playerResetter.ResetPlayer();
         playerResetter.SetPhysicsActive(false);
@@ -116,7 +119,7 @@ public class GameManager : MonoBehaviour
         state = GameState.GameOver;
 
         GameOverUI.SetActive(true);
-        TapToStartUI.SetActive(false );
+        TapToStartUI.SetActive(false);
 
         ApplyStateLocks();
         playerResetter.ResetPlayer();
@@ -130,8 +133,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("구독 시작");
         if (failTrigger != null)
+        {
             failTrigger.OnGameOver += HandleGameOver;
             Debug.Log("찐 구독");
+        }
     }
 
     private void OnDisable()
