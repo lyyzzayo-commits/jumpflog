@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float cameraStartOffsetY = 1.5f;
     [SerializeField] private float lavaStartOffsetFromBottom = 2.0f;
 
+    [Header("UI")]
+    [SerializeField] GameObject TapToStartUI;
+    [SerializeField] GameObject GameOverUI;
+    private float score = 0f;
+
     private float timeSurvived;
     private GameState state;
 
@@ -40,7 +45,10 @@ public class GameManager : MonoBehaviour
         spawner.ApplySettings(diff.obstacleSettings);
         spawner.Tick(dt);
 
+        score += Time.deltaTime;
     }
+
+
 
     public void StartGame()
     {
@@ -58,15 +66,38 @@ public class GameManager : MonoBehaviour
         spawner.ResetSpawner();
         spawner.SetActive(true);
     }
-    
+    public void ReadyGame()
+    {
+        state = GameState.Ready;
+
+        TapToStartUI.SetActive(true);
+    }
+
+    public void TapToStart()
+    {
+        StartGame();
+
+        if (state == GameState.Ready)
+        {
+            TapToStartUI.SetActive(false);
+        }
+        if (state == GameState.GameOver)
+        {
+            GameOverUI.SetActive(false);
+        }
+    }
+
     public void GameOver()
     {
         if (state == GameState.GameOver) return;
 
         state = GameState.GameOver;
 
+        GameOverUI.SetActive(true);
+
         cameraClimb.SetActive(false);
         lavaManager.SetActive(false);
         spawner.SetActive(false);
     }
+    
 } 

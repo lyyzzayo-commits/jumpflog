@@ -7,7 +7,7 @@ public class LavaManager : MonoBehaviour
     
     public void ResetPosition(float y) //위치 리셋
     {
-       Vector3 pos = transform.position;
+        Vector3 pos = transform.position;
         pos.y = y;
         transform.position = pos;
     }
