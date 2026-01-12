@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -147,8 +148,9 @@ public class GameManager : MonoBehaviour
         ApplyStateLocks();
         playerResetter.SetPhysicsActive(false);
 
-        ReadyGame();
+        // ReadyGame();  // ✅ 삭제
     }
+
 
     [SerializeField] private FailTrigger failTrigger;
 
@@ -179,5 +181,20 @@ public class GameManager : MonoBehaviour
     {
         Score += amount;
         OnScoreChanged?.Invoke(Score);
+    }
+
+    public void RestartByReload()
+    {
+        // (선택) 시간 멈춘 상태면 풀기
+        Time.timeScale = 1f;
+
+        int index = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(index);
+    }
+
+    public void QuitToTitle(string sceneName)
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneName);
     }
 } 
