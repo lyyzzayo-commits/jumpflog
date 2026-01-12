@@ -1,83 +1,117 @@
-// using UnityEngine;
+using UnityEngine;
 
-// public sealed class FrogState : MonoBehaviour
-// {
-//     // [Header("Renderer")]
-//     // [SerializeField] private SpriteRenderer sr;
+public enum Facing
+{
+    Left,
+    Right
+}
 
-//     // [Header("Sprites")]
-//     // [SerializeField] private Sprite idleSprite;
-//     // [SerializeField] private Sprite jumpSprite;
-//     // [SerializeField] private Sprite wallSprite;
-//     // [SerializeField] private Sprite deadSprite;
+public sealed class FrogState : MonoBehaviour
+{
+    [Header("Renderer")]
+    [SerializeField] private SpriteRenderer sr;
 
-//     // private bool isJumping;
-//     // private bool isOnWall;
-//     // private bool isDead;
+    [Header("Idle Sprites")]
+    [SerializeField] private Sprite idleLeft;
+    [SerializeField] private Sprite idleRight;
 
-//     // 점프 상태 (공중)
-//     // public void SetJumping(bool value)
-//     // {
-//     //     if (isDead) return;
+    [Header("Jump Sprites")]
+    [SerializeField] private Sprite jumpLeft;
+    [SerializeField] private Sprite jumpRight;
 
-//     //     isJumping = value;
-//     //     UpdateSprite();
-//     // }
+    [Header("Wall Sprites")]
+    [SerializeField] private Sprite wallLeft;
+    [SerializeField] private Sprite wallRight;
 
-//     // 벽 접촉 상태
-//     // public void SetOnWall(bool value)
-//     // {
-//     //     if (isDead) return;
+    [Header("Dead Sprites")]
+    [SerializeField] private Sprite deadLeft;
+    [SerializeField] private Sprite deadRight;
 
-//     //     isOnWall = value;
+    [Header("State")]
+    [SerializeField] private Facing facing = Facing.Right;
 
-//     //     // 벽에 붙는 순간 점프 상태 해제
-//     //     if (isOnWall)
-//     //         isJumping = false;
+    private bool isJumping;
+    private bool isOnWall;
+    private bool isDead;
 
-//     //     UpdateSprite();
-//     // }
+    public Facing CurrentFacing => facing;
+    public bool IsDead => isDead;
 
-//     // 사망 상태 (최상위)
-//     // public void SetDead(bool value)
-//     // {
-//     //     if (isDead == value) return;
+    // 점프 상태 (공중)
+    public void SetJumping(bool value, Facing? jumpFacing = null)
+    {
+        if (isDead) return;
 
-//     //     isDead = value;
+        isJumping = value;
 
-//     //     if (isDead)
-//     //     {
-//     //         // 다른 상태 정리
-//     //         isJumping = false;
-//     //         isOnWall = false;
-//     //     }
+        // 점프 시작/중에 방향을 갱신하고 싶으면 전달
+        if (jumpFacing.HasValue)
+            facing = jumpFacing.Value;
 
-//     //     UpdateSprite();
-//     // }
+        UpdateSprite();
+    }
 
-//     // private void UpdateSprite()
-//     // {
-//     //     // 1순위: Dead
-//     //     if (isDead)
-//     //     {
-//     //         sr.sprite = deadSprite;
-//     //         return;
-//     //     }
+    // 벽 접촉 상태 (+ 어느 벽인지)
+    public void SetOnWall(bool value, Facing wallSide)
+    {
+        if (isDead) return;
 
-//     //     // 2순위: 벽
-//     //     if (isOnWall)
-//     //     {
-//     //         sr.sprite = wallSprite;
-//     //     }
-//     //     // 3순위: 점프
-//     //     else if (isJumping)
-//     //     {
-//     //         sr.sprite = jumpSprite;
-//     //     }
-//     //     // 4순위: 기본
-//     //     else
-//     //     {
-//     //         sr.sprite = idleSprite;
-//     //     }
-//     // }
-// }
+        isOnWall = value;
+
+        if (isOnWall)
+        {
+            // 벽에 붙는 순간 점프 상태 해제
+            isJumping = false;
+
+            // 벽에 붙으면 방향은 그 벽 방향으로 고정
+            facing = wallSide;
+        }
+
+        UpdateSprite();
+    }
+
+    // 사망 상태 (최상위)
+    public void SetDead(bool value)
+    {
+        if (isDead == value) return;
+
+        isDead = value;
+
+        if (isDead)
+        {
+            isJumping = false;
+            isOnWall = false;
+        }
+
+        UpdateSprite();
+    }
+
+    private void UpdateSprite()
+    {
+        if (sr == null) return;
+
+        // 1) Dead
+        if (isDead)
+        {
+            sr.sprite = (facing == Facing.Left) ? deadLeft : deadRight;
+            return;
+        }
+
+        // 2) Wall
+        if (isOnWall)
+        {
+            sr.sprite = (facing == Facing.Left) ? wallLeft : wallRight;
+            return;
+        }
+
+        // 3) Jump
+        if (isJumping)
+        {
+            sr.sprite = (facing == Facing.Left) ? jumpLeft : jumpRight;
+            return;
+        }
+
+        // 4) Idle
+        sr.sprite = (facing == Facing.Left) ? idleLeft : idleRight;
+    }
+}
