@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LavaManager lavaManager;
     [SerializeField] private ObstacleSpawner spawner;
     [SerializeField] private Transform player;
+    [SerializeField] private DragController dragController;
 
     [Header("Start Settings")]
     [SerializeField] private float cameraStartOffsetY = 1.5f;
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
 
     private float timeSurvived;
     private GameState state;
+
+    void Awake()
+    {
+        ReadyGame();
+    }
 
     void Update()
     {
@@ -45,9 +51,20 @@ public class GameManager : MonoBehaviour
         spawner.ApplySettings(diff.obstacleSettings);
         spawner.Tick(dt);
 
-        score += Time.deltaTime;
+        
     }
 
+    private void ApplyStateLocks()
+    {
+        bool playing = (state == GameState.Playing);
+
+        if (dragController != null) dragController.EnableInput(playing);
+
+        // 용암/스포너/카메라 차단/허용
+        if (lavaManager != null) lavaManager.SetActive(playing);
+        if (spawner != null) spawner.SetActive(playing);
+        if (cameraClimb != null) cameraClimb.SetActive(playing);
+    }
 
 
     public void StartGame()
@@ -64,27 +81,26 @@ public class GameManager : MonoBehaviour
         lavaManager.ResetLava(lavaStartY, startSpeed: 0f, active: true);
 
         spawner.ResetSpawner();
-        spawner.SetActive(true);
+
+        ApplyStateLocks();
     }
     public void ReadyGame()
     {
         state = GameState.Ready;
 
         TapToStartUI.SetActive(true);
+        GameOverUI.SetActive(false);
+
+        ApplyStateLocks();
     }
 
     public void TapToStart()
     {
-        StartGame();
 
-        if (state == GameState.Ready)
-        {
-            TapToStartUI.SetActive(false);
-        }
-        if (state == GameState.GameOver)
-        {
-            GameOverUI.SetActive(false);
-        }
+        TapToStartUI.SetActive(false);
+        GameOverUI.SetActive(false);
+
+        StartGame();
     }
 
     public void GameOver()
@@ -94,10 +110,11 @@ public class GameManager : MonoBehaviour
         state = GameState.GameOver;
 
         GameOverUI.SetActive(true);
+        TapToStartUI.SetActive(false );
 
-        cameraClimb.SetActive(false);
-        lavaManager.SetActive(false);
-        spawner.SetActive(false);
+        ApplyStateLocks();
     }
+
+    
     
 } 

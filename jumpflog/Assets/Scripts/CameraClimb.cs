@@ -76,7 +76,7 @@ public class CameraClimb : MonoBehaviour
         float currentY = transform.position.y;
         float desiredY = target.position.y + offsetY;
 
-        if (desiredY < currentY) return;
+        
 
         float nextY;
         if (useSmoothDamp)

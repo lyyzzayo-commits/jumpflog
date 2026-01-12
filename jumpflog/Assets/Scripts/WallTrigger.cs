@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class WallTrigger : MonoBehaviour
 {
     [SerializeField] private WallStickHandler wallstick;
-    [SerializeField] private FrogState frogState;
+    //[SerializeField] private FrogState frogState;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,7 +16,7 @@ public sealed class WallTrigger : MonoBehaviour
         if (stick == null) return;
         Debug.Log("if문 통과");
         wallstick.NotifyWall(other);
-        frogState.SetOnWall(true);         
+        //frogState.SetOnWall(true);         
         //FrogRotator에서 Rotate함수 호출
     }
 
@@ -27,7 +27,7 @@ public sealed class WallTrigger : MonoBehaviour
         if (stick == null) return;
 
         wallstick.NotifyWallExit(other);
-        frogState.SetOnWall(false);
-        frogState.SetJumping(true);
+        //frogState.SetOnWall(false);
+        //frogState.SetJumping(true);
     }
 }

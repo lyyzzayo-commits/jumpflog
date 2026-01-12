@@ -3,7 +3,7 @@ using UnityEngine;
 
 public sealed class FailTrigger : MonoBehaviour
 {
-    [SerializeField] private FrogState frogState;
+    //[SerializeField] private FrogState frogState;
 
     // 게임오버 이벤트
     public event Action OnGameOver;
@@ -17,8 +17,8 @@ public sealed class FailTrigger : MonoBehaviour
 
         triggered = true;
 
-        if (frogState != null)
-            frogState.SetDead(true);
+        //if (frogState != null)
+            //frogState.SetDead(true);
 
         // 게임오버 이벤트 발행
         OnGameOver?.Invoke();
