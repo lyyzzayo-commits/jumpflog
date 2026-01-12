@@ -16,7 +16,6 @@ public class LavaManager : MonoBehaviour
     {
         ResetPosition(startY);
         speed = startSpeed;
-        speedMul = 1f;
         isActive = active;
     }
 
