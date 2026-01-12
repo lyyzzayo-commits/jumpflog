@@ -51,7 +51,7 @@ public sealed class WallStickHandler : MonoBehaviour
         wallContactCount++;
         if (IsWallSticking)
             return;
-
+        Debug.Log("벽감지");
         StartWallStick();
     }
 

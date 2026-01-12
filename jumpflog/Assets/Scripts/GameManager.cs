@@ -28,20 +28,20 @@ public class GameManager : MonoBehaviour
         float dt = Time.deltaTime;
         timeSurvived += dt;
 
-        // 1. Ä«¸Ş¶ó ÀÌµ¿
+        // 1. ì¹´ë©”ë¼ ì´ë™
         cameraClimb.Tick(dt);
 
-        // 2. ÁøÇàµµ °è»ê (Á¤ÀÇµÈ ±ÔÄ¢)
+        // 2. ì§„í–‰ë„ ê³„ì‚° (ì •ì˜ëœ ê·œì¹™)
         float height = cameraClimb.MaxY;
 
-        // 3. ³­ÀÌµµ Æò°¡
+        // 3. ë‚œì´ë„ í‰ê°€
         DifficultySnapshot diff = difficultyDirector.EvaluateByHeight(height, timeSurvived);
 
-        // 4. ¿ë¾Ï Àû¿ë
+        // 4. ìš©ì•” ì ìš©
         lavaManager.SetSpeed(diff.lavaSpeed);
         lavaManager.Tick(dt);
 
-        // 5. Àå¾Ö¹° ½ºÆù
+        // 5. ì¥ì• ë¬¼ ìŠ¤í°
         spawner.ApplySettings(diff.obstacleSettings);
         spawner.Tick(dt);
 

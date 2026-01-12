@@ -8,10 +8,13 @@ public sealed class WallTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("첫번째 if 앞");
+
         if (!other.CompareTag("Frog")) return;
         var stick = other.GetComponent<WallStickHandler>();
+        Debug.Log("두번재 if 앞");
         if (stick == null) return;
-
+        Debug.Log("if문 통과");
         wallstick.NotifyWall(other);
         frogState.SetOnWall(true);         
         //FrogRotator에서 Rotate함수 호출
