@@ -17,18 +17,15 @@ public sealed class PlayerResetter : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (frogState == null) frogState = GetComponent<FrogState>();
 
-        // spawnPoint°¡ ¾øÀ¸¸é ½ÃÀÛ À§Ä¡¸¦ ±âÁØÀ¸·Î ÀúÀå
-        initialPosition = spawnPoint != null
-            ? spawnPoint.position
-            : transform.position;
+        // spawnPointï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void ResetPlayer()
     {
-        // À§Ä¡ ÃÊ±âÈ­
-        transform.position = initialPosition;
+        // ï¿½ï¿½Ä¡ ï¿½Ê±ï¿½È­
+        transform.position = spawnPoint.position;
 
-        // ¹°¸® ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
@@ -36,12 +33,11 @@ public sealed class PlayerResetter : MonoBehaviour
             rb.simulated = true;
         }
 
-        // »óÅÂ ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         if (frogState != null)
         {
             frogState.SetDead(false);
             frogState.SetJumping(false);
-            //frogState.SetOnWall(false);
         }
     }
 
