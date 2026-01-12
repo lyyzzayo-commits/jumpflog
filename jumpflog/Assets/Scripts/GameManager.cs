@@ -77,11 +77,11 @@ public class GameManager : MonoBehaviour
         cameraClimb.SetTarget(player);
         cameraClimb.SetActive(true);
 
-        float lavaStartY = cameraClimb.BottomY - lavaStartOffsetFromBottom;
+        float lavaStartY = cameraClimb.BottomY + lavaStartOffsetFromBottom;
         lavaManager.ResetLava(lavaStartY, startSpeed: 0f, active: true);
 
         spawner.ResetSpawner();
-
+        
         ApplyStateLocks();
     }
     public void ReadyGame()

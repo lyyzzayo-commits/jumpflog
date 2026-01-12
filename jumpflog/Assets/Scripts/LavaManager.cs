@@ -4,9 +4,11 @@ public class LavaManager : MonoBehaviour
 {
     [SerializeField] private bool isActive;
     [SerializeField] private float speed = 1f;
+    [SerializeField] private GameManager gameManager;
     
     public void ResetPosition(float y) //위치 리셋
     {
+        
         Vector3 pos = transform.position;
         pos.y = y;
         transform.position = pos;
@@ -31,11 +33,22 @@ public class LavaManager : MonoBehaviour
 
     public void Tick(float deltaTime)//용암 이동 로직
     {
+        
         if (!isActive) return;
 
         Vector3 pos  = transform.position;
         pos.y += speed * deltaTime;
         transform.position = pos;
 
+    }
+    private bool triggered;
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (triggered) return;
+        if (!other.CompareTag("Frog")) return;
+
+        triggered = true;
+
+        gameManager.GameOver();
     }
 }
