@@ -3,17 +3,6 @@ using UnityEngine;
 #region Data Structs
 
 [System.Serializable]
-public struct ObstacleSpawnSettings
-{
-    public float interval;
-    public float spawnMarginY;
-    public float xMin;
-    public float xMax;
-    public float fallSpeedMin;
-    public float fallSpeedMax;
-}
-
-[System.Serializable]
 public struct DifficultySnapshot
 {
     public int tier;
@@ -83,17 +72,17 @@ public sealed class DifficultyDirector : MonoBehaviour
 
     #region Public API - Evaluate
 
-    // 1) height¸¸ ¾²´Â ±âº» Æò°¡ (±ÇÀå: CameraClimb.MaxY)
+    // 1) heightï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½: CameraClimb.MaxY)
     public DifficultySnapshot EvaluateByHeight(float height) => EvaluateByHeight(height, 0f);
 
-    // 2) height + timeSurvived È¥ÇÕ Æò°¡(¼±ÅÃ)
+    // 2) height + timeSurvived È¥ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
     public DifficultySnapshot EvaluateByHeight(float height, float timeSurvived)
     {
         float progress = ComposeProgress(height, timeSurvived);
         return EvaluateByProgress(progress);
     }
 
-    // 3) ÀÌ¹Ì progress¸¦ °è»êÇØ¼­ ¾²°í ½ÍÀ» ¶§(¿É¼Ç)
+    // 3) ï¿½Ì¹ï¿½ progressï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½É¼ï¿½)
     public DifficultySnapshot EvaluateByProgressPublic(float progress)
     {
         return EvaluateByProgress(progress);
@@ -103,7 +92,7 @@ public sealed class DifficultyDirector : MonoBehaviour
 
     #region Public API - Parts (Lava / Spawner)
 
-    public int GetTier(float progress) //Æ¼¾î Á¤ÇÏ±â
+    public int GetTier(float progress) //Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
     {
         if (progress < tier1End) return 1;
         if (progress < tier2End) return 2;
@@ -111,7 +100,7 @@ public sealed class DifficultyDirector : MonoBehaviour
         return 4;
     }
 
-    public float GetLavaSpeed(float progress) //¿ë¾Ï ¼Óµµ Á¤ÇÏ±â
+    public float GetLavaSpeed(float progress) //ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
     {
         int tier = GetTier(progress);
         return tier switch
@@ -123,7 +112,7 @@ public sealed class DifficultyDirector : MonoBehaviour
         };
     }
 
-    public ObstacleSpawnSettings GetObstacleSettings(float progress) //Àå¾Ö¹° ¼¼ÆÃ
+    public ObstacleSpawnSettings GetObstacleSettings(float progress) //ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         int tier = GetTier(progress);
 
@@ -141,7 +130,7 @@ public sealed class DifficultyDirector : MonoBehaviour
             }
         };
 
-        // progress°¡ tier3End±îÁö´Â Á¡Áø Áõ°¡, ÀÌÈÄ´Â max(=1)·Î °íÁ¤
+        // progressï¿½ï¿½ tier3Endï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ä´ï¿½ max(=1)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float t = Remap01(progress, 0f, tier3End);
         s.fallSpeedMin = Mathf.Lerp(fallMinT1, fallMinT4, t);
         s.fallSpeedMax = Mathf.Lerp(fallMaxT1, fallMaxT4, t);
@@ -153,7 +142,7 @@ public sealed class DifficultyDirector : MonoBehaviour
 
     #region Core - Internal Evaluate
 
-    private DifficultySnapshot EvaluateByProgress(float progress) //DifficultySnapshot °è»ê
+    private DifficultySnapshot EvaluateByProgress(float progress) //DifficultySnapshot ï¿½ï¿½ï¿½
     {
         int tier = GetTier(progress);
         return new DifficultySnapshot
@@ -168,7 +157,7 @@ public sealed class DifficultyDirector : MonoBehaviour
 
     #region Core - Progress Composition
 
-    private float ComposeProgress(float height, float timeSurvived) //progress °è»ê
+    private float ComposeProgress(float height, float timeSurvived) //progress ï¿½ï¿½ï¿½
     {
         return height + timeSurvived * timeToHeightScale;
     }
@@ -177,14 +166,14 @@ public sealed class DifficultyDirector : MonoBehaviour
 
     #region Helpers (Internal)
 
-    private static float Remap01(float value, float min, float max) //´Ü¼ø °è»ê µµ¿ì¹Ì
+    private static float Remap01(float value, float min, float max) //ï¿½Ü¼ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         if (max <= min) return 0f;
         return Mathf.Clamp01((value - min) / (max - min));
     }
 
-    // Áö±Ý ÄÚµå¿¡¼­´Â EaseIn/EaseOut/TierProgress01À» »ç¿ëÇÏÁö ¾Ê¾Æ¼­ Á¦°ÅÇØµµ µÊ.
-    // ³ªÁß¿¡ °î¼± ³­ÀÌµµ(ºÎµå·¯¿î Áõ°¡)¸¦ ¸¸µé ¶§ ´Ù½Ã Ãß°¡ÇÏ¸é µÊ.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¿¡ï¿½ï¿½ï¿½ï¿½ EaseIn/EaseOut/TierProgress01ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½.
+    // ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½î¼± ï¿½ï¿½ï¿½Ìµï¿½(ï¿½Îµå·¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ß°ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½.
 
     #endregion
 }
