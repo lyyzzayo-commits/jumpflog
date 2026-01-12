@@ -6,7 +6,7 @@ public sealed class FailTrigger : MonoBehaviour
     [SerializeField] private FrogState frogState;
 
     // 게임오버 이벤트
-    public event Action OnGameOver;
+    public static event Action OnAnyGameOver;    
     private bool triggered;
 
     public void ResetTrigger()
@@ -27,7 +27,7 @@ public sealed class FailTrigger : MonoBehaviour
 
         // 게임오버 이벤트 발행
         Debug.Log("if문 다 통과");
-        OnGameOver?.Invoke();
+        OnAnyGameOver?.Invoke();
 
         triggered = false;
     }

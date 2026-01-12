@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("구독 시작");
         if (failTrigger != null)
         {
-            failTrigger.OnGameOver += HandleGameOver;
+            FailTrigger.OnAnyGameOver += HandleGameOver;
             Debug.Log("찐 구독");
         }
     }
@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         if (failTrigger != null)
-            failTrigger.OnGameOver -= HandleGameOver;
+            FailTrigger.OnAnyGameOver -= HandleGameOver;
     }
 
     private void HandleGameOver()
