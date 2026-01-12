@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (spawner != null && cameraClimb != null)
+            spawner.Init(cameraClimb);
+
         ReadyGame();
     }
 

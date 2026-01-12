@@ -311,7 +311,7 @@ MonoBehaviour:
   lavaManager: {fileID: 1286296183}
   spawner: {fileID: 820747872}
   player: {fileID: 886528257}
-  dragController: {fileID: 0}
+  dragController: {fileID: 886528255}
   playerResetter: {fileID: 230235868}
   cameraStartOffsetY: 1.5
   lavaStartOffsetFromBottom: 2
@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2c47e1907637d4d88436eca15438d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
-  obstaclePrefab: {fileID: 0}
+  obstaclePrefab: {fileID: 3534315795033626166, guid: 906446465de1cfa4c8f62afd2a6fc4b2, type: 3}
   spawnRoot: {fileID: 0}
   maxSpawnsPerTick: 5
 --- !u!4 &820747873
@@ -1549,7 +1549,7 @@ GameObject:
   - component: {fileID: 1286296183}
   - component: {fileID: 1286296182}
   m_Layer: 0
-  m_Name: Lava
+  m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
