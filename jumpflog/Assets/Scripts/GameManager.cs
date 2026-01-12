@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObstacleSpawner spawner;
     [SerializeField] private Transform player;
     [SerializeField] private DragController dragController;
+    [SerializeField] private PlayerResetter playerResetter;
 
     [Header("Start Settings")]
     [SerializeField] private float cameraStartOffsetY = 1.5f;
@@ -72,6 +73,8 @@ public class GameManager : MonoBehaviour
         state = GameState.Playing;
         timeSurvived = 0f;
 
+        playerResetter.SetPhysicsActive(true);
+
         float cameraStartY = player.position.y;
         cameraClimb.ResetY(cameraStartY);
         cameraClimb.SetTarget(player);
@@ -87,6 +90,9 @@ public class GameManager : MonoBehaviour
     public void ReadyGame()
     {
         state = GameState.Ready;
+
+        playerResetter.ResetPlayer();
+        playerResetter.SetPhysicsActive(false);
 
         TapToStartUI.SetActive(true);
         GameOverUI.SetActive(false);

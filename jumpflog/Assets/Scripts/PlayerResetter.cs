@@ -44,4 +44,13 @@ public sealed class PlayerResetter : MonoBehaviour
             //frogState.SetOnWall(false);
         }
     }
+
+    public void SetPhysicsActive(bool active)
+    {
+        if (rb == null) return;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.simulated = active;
+    }
 }
