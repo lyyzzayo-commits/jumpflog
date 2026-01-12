@@ -2231,7 +2231,7 @@ Transform:
   m_GameObject: {fileID: 1718541165}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 1.71, z: 0}
+  m_LocalPosition: {x: -3.54, y: 3.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2330,8 +2330,8 @@ MonoBehaviour:
   lavaSpeedT3: 1.2
   lavaSpeedT4: 1.6
   spawnMarginY: 2
-  xMin: -2.2
-  xMax: 2.2
+  xMin: -3.7
+  xMax: 3.7
   intervalT1: 1.2
   intervalT2: 0.95
   intervalT3: 0.75
