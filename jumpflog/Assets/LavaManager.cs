@@ -4,7 +4,7 @@ public class LavaManager : MonoBehaviour
 {
     [SerializeField] private bool isActive;
     [SerializeField] private float speed = 1f;
-    private float speedMul = 1f;
+    
     public void ResetPosition(float y) //위치 리셋
     {
        Vector3 pos = transform.position;
