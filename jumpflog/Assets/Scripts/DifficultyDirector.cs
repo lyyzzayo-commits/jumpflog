@@ -37,8 +37,8 @@ public sealed class DifficultyDirector : MonoBehaviour
 
     [Header("Obstacle Spawn Area")]
     [SerializeField] private float spawnMarginY = 2.0f;
-    [SerializeField] private float xMin = -2.2f;
-    [SerializeField] private float xMax = 2.2f;
+    [SerializeField] private float xMin = -10f;
+    [SerializeField] private float xMax = 10f;
 
     #endregion
 
