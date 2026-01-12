@@ -6,7 +6,7 @@ public class LavaManager : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private GameManager gameManager;
     
-    public void ResetPosition(float y) //À§Ä¡ ¸®¼Â
+    public void ResetPosition(float y) //ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
     {
         
         Vector3 pos = transform.position;
@@ -14,7 +14,7 @@ public class LavaManager : MonoBehaviour
         transform.position = pos;
     }
 
-    public void ResetLava(float startY, float startSpeed = 0f, bool active = false) //»óÅÂ ¸®¼Â
+    public void ResetLava(float startY, float startSpeed = 0f, bool active = false) //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         ResetPosition(startY);
         speed = startSpeed;
@@ -26,12 +26,12 @@ public class LavaManager : MonoBehaviour
         isActive = active;
     }
 
-    public void SetSpeed(float unitsPerSec)//¼Óµµ ¼³Á¤
+    public void SetSpeed(float unitsPerSec)//ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         speed = unitsPerSec;
     }
 
-    public void Tick(float deltaTime)//¿ë¾Ï ÀÌµ¿ ·ÎÁ÷
+    public void Tick(float deltaTime)//ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         
         if (!isActive) return;
@@ -40,15 +40,5 @@ public class LavaManager : MonoBehaviour
         pos.y += speed * deltaTime;
         transform.position = pos;
 
-    }
-    private bool triggered;
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (triggered) return;
-        if (!other.CompareTag("Frog")) return;
-
-        triggered = true;
-
-        gameManager.GameOver();
     }
 }

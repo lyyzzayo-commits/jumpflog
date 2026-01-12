@@ -115,6 +115,25 @@ public class GameManager : MonoBehaviour
         ApplyStateLocks();
     }
 
-    
+    [SerializeField] private FailTrigger failTrigger;
+
+    private GameState gameState = GameState.Ready;
+
+    private void OnEnable()
+    {
+        if (failTrigger != null)
+            failTrigger.OnGameOver += HandleGameOver;
+    }
+
+    private void OnDisable()
+    {
+        if (failTrigger != null)
+            failTrigger.OnGameOver -= HandleGameOver;
+    }
+
+    private void HandleGameOver()
+    {
+        GameOver();
+    }
     
 } 
