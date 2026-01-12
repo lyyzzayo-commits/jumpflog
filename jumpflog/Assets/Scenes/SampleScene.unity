@@ -2039,8 +2039,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2126,7 +2126,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -133, y: 217}
+  m_AnchoredPosition: {x: -0, y: 229}
   m_SizeDelta: {x: 153.4837, y: 46.5286}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1469301449
@@ -2514,8 +2514,8 @@ MonoBehaviour:
   lavaSpeedT3: 1.2
   lavaSpeedT4: 1.6
   spawnMarginY: 2
-  xMin: -3.7
-  xMax: 3.7
+  xMin: -4
+  xMax: 4
   intervalT1: 1.2
   intervalT2: 0.95
   intervalT3: 0.75
