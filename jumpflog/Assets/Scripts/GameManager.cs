@@ -21,11 +21,13 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject TapToStartUI;
     [SerializeField] GameObject GameOverUI;
-    private float score = 0f;
+
+    public event System.Action<float> OnScoreChanged;
 
     private float timeSurvived;
     private GameState state;
 
+    private float Score;
     void Awake()
     {
         if (spawner != null && cameraClimb != null)
@@ -58,7 +60,12 @@ public class GameManager : MonoBehaviour
         spawner.ApplySettings(diff.obstacleSettings);
         spawner.Tick(dt);
 
+        if (state != GameState.Playing) return;
+
         
+        timeSurvived += dt;
+
+        AddScore(dt);
     }
 
     private void ApplyStateLocks()
@@ -168,4 +175,9 @@ public class GameManager : MonoBehaviour
         GameOver();
     }
     
+    private void AddScore(float amount)
+    {
+        Score += amount;
+        OnScoreChanged?.Invoke(Score);
+    }
 } 
