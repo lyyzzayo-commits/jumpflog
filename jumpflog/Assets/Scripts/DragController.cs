@@ -39,18 +39,19 @@ public class DragController : MonoBehaviour
     }
 
 
-    Vector3 MousePosition
+    Vector3 PointerWorldPosition
     {
         get
         {
-            // Mouse.current.position.ReadValue() 사용
-            Vector3 mousePos = Mouse.current.position.ReadValue();
-            Vector3 pos = cam.ScreenToWorldPoint(mousePos);
-            pos.z = 0f;
-            return pos;
+            // Pointer.current가 null일 수 있으니 안전 처리
+            if (Pointer.current == null) return (Vector3)rb.position;
+
+            Vector2 screenPos = Pointer.current.position.ReadValue(); // 화면 좌표
+            Vector3 worldPos = cam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0f));
+            worldPos.z = 0f;
+            return worldPos;
         }
     }
-
     private void Start()
     {
         cam = Camera.main;
@@ -67,18 +68,18 @@ public class DragController : MonoBehaviour
     private void Update()
     {
         if (!inputEnabled) return;
-        if (Mouse.current == null) return;
+        if (Pointer.current == null) return;
 
-        var leftButton = Mouse.current.leftButton;
+        var press = Pointer.current.press;
 
-        if (leftButton.wasPressedThisFrame && !isDragging)
+        if (press.wasPressedThisFrame && !isDragging)
             DragStart();
 
         if (!isDragging) return;
 
         Drag();
 
-        if (leftButton.wasReleasedThisFrame)
+        if (press.wasReleasedThisFrame)
             DragEnd();
     }
 
@@ -87,7 +88,7 @@ public class DragController : MonoBehaviour
         if (rb == null) return;
 
         isDragging = true;
-        dragStartPos = rb != null ? (Vector3)rb.position : transform.position;
+        dragStartPos = (Vector3)rb.position;
         lastDragVector = Vector3.zero;
 
         if (line != null)
@@ -109,7 +110,7 @@ public class DragController : MonoBehaviour
                 line.SetPosition(0, startPos);
             }
 
-            Vector3 currentPos = MousePosition;
+            Vector3 currentPos = PointerWorldPosition;
             Vector3 distance = currentPos - startPos;
 
             Vector3 endPos;
